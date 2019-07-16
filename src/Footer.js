@@ -16,9 +16,8 @@ class Footer extends Component {
                 contemporary society and professional and industry practice </p>
             </div>
 
-            <form action="#" className="col-md-3 offset-md-1">
+            <form action="#" className=" form col-md-3 offset-md-1">
               <div class="input-group ">
-                <h4></h4>
                 <input type="text" class="form-control" placeholder='Enter email address' />
                 <div className="input-group-append">
                   <button class="btn btn-danger" type="button">Send</button>

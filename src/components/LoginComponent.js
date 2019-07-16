@@ -34,7 +34,8 @@ class LoginComponent extends Component {
         const { username, password, submitted } = this.state;
         return (
           <div className="login">
-            <div className="col-md-3 col-lg-3 log-block">
+                <div className="container">
+            <div className="col-md-4 col-lg-4 offset-md-4 log-block">
               <h2>Login</h2>
               <form className="form"  onSubmit={this.handleSubmit} >
                 <div className={'form-group' + (submitted && !username ? ' has-error' : '') }>
@@ -59,6 +60,7 @@ class LoginComponent extends Component {
                   <a href="./register" className="btn btn-link text-decoration-none">Register</a>
                 </div>
               </form>
+              </div>
             </div>
           </div>
         );
