@@ -1,4 +1,15 @@
-img{
-    height: 400px;
-    width: 994px;
+.iconlogo{
+    height: 40px;
+    widows: 15;
 }
+.icon{
+    width: 20px;
+    height: 20;
+}
+.background {
+    background-image: url(../images/background.jpeg);
+}
+#register-form{
+  padding: 50px;
+}
+    

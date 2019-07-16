@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './register.css';
+import './index.css';
 
 
 class RegisterComponent extends Component {
@@ -35,8 +35,10 @@ class RegisterComponent extends Component {
   render() {
     const { firstName,lastName,username,password,confirmPassword,mobileNumber, submitted } = this.state;
     return (
-      <div className="register">
-      <div className="col-md-3 reg-block">
+      <div className="background">
+      <div className="container">
+      <div className="row" id="register-form">
+      <div className="col-md-4 offset-md-4 reg-block">
         <h3>Register</h3>
         <form className="form"  onSubmit={this.handleSubmit}>
           <div className={'form-group'  + (submitted && !firstName ? ' has-error' : '')}>
@@ -89,9 +91,11 @@ class RegisterComponent extends Component {
           </div>
           <div className={'form-group' }>
             <button type="submit" className="btn btn-primary">Register</button>
-            <a href="./login" className="btn btn-link text-decoration-none">Cancel</a>
+            <a href="./index" className="btn btn-link text-decoration-none">Cancel</a>
           </div>
         </form>
+      </div>
+      </div>
       </div>
       </div>
     );
