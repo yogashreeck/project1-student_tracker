@@ -6,11 +6,16 @@
     width: 20px;
     height: 20;
 }
-.background {
-    background-image: url(../images/background.png);
-    /* background-image: url(../images/indimg.png); */
-}
-#register-form{
+/* .background {
+    background-image: url(../images/registerimg.png)
+   
+} */
+/* #register-form{
   padding: 50px;
+
 }
-    
+     */
+.login{
+
+    padding: 38px 50px 40px 50px;
+}

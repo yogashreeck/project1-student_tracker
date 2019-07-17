@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import IndexComponent from './components/IndexComponent'
 import LoginComponent from './components/LoginComponent';
 import RegisterComponent from './components/RegisterComponent';
-import HomeComponent from './components/HomeComponent';
+import StudentComponent from './components/StudentComponent';
+import CourseComponent from './components/CourseComponent';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route exact path='/index' component={IndexComponent}></Route>
           <Route exact path='/register' component={RegisterComponent}></Route>
           <Route exact path='/login' component={LoginComponent}></Route>
-          <Route exact path='/home' component={HomeComponent}></Route>  
+          <Route exact path='/student' component={StudentComponent}></Route> 
+          <Route exact path='/course' component={CourseComponent}></Route>  
         </Switch>
       </Router>
     </div>

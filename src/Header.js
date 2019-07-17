@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import edutech from './images/edutech.png';
-import home from './images/home.png';
 import student from './images/student.png';
 import course from './images/course.png';
 import register from './images/register.png';
@@ -10,22 +9,23 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+          id="ftco-navbar">
           <div class="container">
-            <span class="navbar-brand active"><h2>
-              <img src={edutech} alt="eicon" className="iconlogo" />EduTech</h2>
-            </span>
-            <div >
+            <a href="./index"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
+              <img src={edutech} alt="eicon" className="iconlogo" />EduTech</h2></i></span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="" class="nav-link">Home
-                  <img src={home} alt="hicon" className="icon" /></a></li>
                 <li class="nav-item"><a href="" class="nav-link">Students
                   <img src={student} alt="sicon" className="icon" /></a></li>
                 <li class="nav-item"><a href="" class="nav-link">Courses
                  <img src={course} alt="sicon" className="icon" /></a></li>
                 <li class="nav-item"><a href="./register" class="nav-link">Register
                   <img src={register} alt="sicon" className="icon" /></a></li>
-                <li class="nav-item"><a href="./login" class="nav-link">Login
+                <li class="nav-item"><a href="" class="nav-link">Login
                   <img src={login} alt="sicon" className="icon" /></a></li>
               </ul>
             </div>
