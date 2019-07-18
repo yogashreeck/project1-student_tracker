@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { registerUser } from '../actions/authentication';
+
+
 import './index.css';
 
 
@@ -18,6 +24,7 @@ class RegisterComponent extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
@@ -27,10 +34,27 @@ class RegisterComponent extends Component {
     const {firstName, username,email, password,confirmPassword,mobileNumber } = this.state;
      this.setState({ submitted: true });
      if (firstName &&  username && email && password && confirmPassword && mobileNumber) {
-      this.props.history.push('/login')
+      this.props.history.push('/login');
+      
   }
   }
   
+  componentWillReceiveProps(nextProps) {
+        if(nextProps.auth.isAuthenticated) {
+            this.props.history.push('/')
+        }
+        if(nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
+    componentDidMount() {
+        if(this.props.auth.isAuthenticated) {
+            this.props.history.push('/');
+        }
+    }
 
   render() {
     const { firstName,username,email,password,confirmPassword,mobileNumber, submitted } = this.state;
@@ -101,5 +125,13 @@ class RegisterComponent extends Component {
     );
   }
 }
+RegisterComponent.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+};
 
-export default (RegisterComponent);
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+export default connect(mapStateToProps,{ registerUser })(withRouter(RegisterComponent));
+
