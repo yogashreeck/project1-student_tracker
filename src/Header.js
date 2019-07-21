@@ -51,7 +51,7 @@ class Header extends Component {
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
           id="ftco-navbar">
           <div class="container">
-            <a href="./index"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
+            <a href="/"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
               <img src={edutech} alt="eicon" className="iconlogo" />EduTech</h2></i></span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="oi oi-menu"></span> Menu
@@ -73,10 +73,23 @@ class Header extends Component {
       </div>
     );
     const logoutLink = (
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a href="" onClick={this.logOut.bind(this)} class="nav-link">logOut
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+        id="ftco-navbar">
+        <div class="container">
+          <a href="./index"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
+            <img src={edutech} alt="eicon" className="iconlogo" />EduTech</h2></i></span></a>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><Link to="" class="nav-link">Students
+                  <img src={student} alt="sicon" className="icon" /></Link></li>
+              <li class="nav-item"><Link to="" class="nav-link">Courses
+                 <img src={course} alt="sicon" className="icon" /></Link></li>
+              <li class="nav-item"><a href="" onClick={this.logOut.bind(this)} class="nav-link">logOut
                </a></li>
-      </ul>
+            </ul>
+          </div>
+        </div>
+      </nav>
     )
 
     return (

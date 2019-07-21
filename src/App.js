@@ -13,11 +13,10 @@ import Footer from './Footer';
 function App() {
   return (
     <div>
-
       <Router>
-        <Header />
+      <Header />
         <switch>
-          <Route exact path='/index' component={IndexComponent}></Route>
+          <Route exact path='/' component={IndexComponent}></Route>
           <Route exact path='/register' component={RegisterComponent}></Route>
           <Route exact path='/login' component={LoginComponent}></Route>
           <Route exact path='/student' component={StudentComponent}></Route>
