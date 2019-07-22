@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import StudentProfile from './StudentProfile';
+import { studentProfile } from './UserFunction'
 
 class StudentComponent extends Component {
   constructor() {
@@ -11,8 +13,28 @@ class StudentComponent extends Component {
       mobileNumber: '',
       submitted: false
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(e) {
+    // const { name, value } = e.target;
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  handleSubmit(event) {
+    event.preventDefault();
+    const { studentname,  address, email, mobileNumber } = this.state;
+    this.setState({ submitted: true });
+    const profileuser = {
+      studentname: this.state.studentname,
+       address: this.state. address,
+      email: this.state.email,
+      mobileNumber: this.state.mobileNumber
+    }
+    studentProfile(profileuser).then(res => {
+      if (studentname &&  address && email && mobileNumber) {
+        this.props.history.push('/student')
+      }
+    })
   }
   render() {
     const { studentname, address, email, mobileNumber, submitted } = this.state;
@@ -75,6 +97,7 @@ class StudentComponent extends Component {
             </div>
           </div>
         </div>
+        <StudentProfile />
       </div>
     );
   }
