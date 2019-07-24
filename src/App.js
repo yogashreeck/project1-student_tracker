@@ -9,6 +9,9 @@ import CourseComponent from './components/CourseComponent';
 import Header from './Header';
 import Footer from './Footer';
 
+import  StudentList  from './components/students/StudentList'
+import  StudentInsert  from './components/students/StudentInsert'
+import StudentUpdate from './components/students/StudentUpdate'
 
 function App() {
   return (
@@ -21,6 +24,13 @@ function App() {
           <Route exact path='/login' component={LoginComponent}></Route>
           <Route exact path='/student' component={StudentComponent}></Route>
           <Route exact path='/course' component={CourseComponent}></Route>
+
+          <Route path="/movies/list" exact component={StudentList} />
+                <Route path="/movies/create" exact component={StudentInsert} />
+                <Route
+                    path="/movies/update/:id"
+                    exact
+                    component={StudentUpdate} />
         </switch>
       </Router>
       <Footer />

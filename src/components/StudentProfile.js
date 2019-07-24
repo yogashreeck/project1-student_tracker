@@ -23,6 +23,17 @@ class StudentProfile extends Component {
   //   })
   // }
 
+  componentDidMount = async () => {
+    this.setState({ isLoading: true })
+
+    await api.getAllMovies().then(movies => {
+        this.setState({
+            movies: movies.data.data,
+            isLoading: false,
+        })
+    })
+}
+
   render() {
     return (
       <div className="container">
