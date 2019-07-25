@@ -35,10 +35,10 @@ export const login = user => {
 export const studentProfile = profileuser => {
   return axios
     .post('users/studentProfile', {
-      studentname: profileuser. studentname,
-      address: profileuser. address,
+      studentname: profileuser.studentname,
+      address: profileuser.address,
       email: profileuser.email,
-      mobileNumber: profileuser. mobileNumber
+      mobileNumber: profileuser.mobileNumber
     })
     .catch(err => {
       console.log(err)

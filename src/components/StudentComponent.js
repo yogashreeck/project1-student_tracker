@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import StudentProfile from './StudentProfile';
-import { studentProfile } from './UserFunction'
+import { studentProfile } from './UserFunction';
+import StudentDetails from './StudentDetails'
 
 class StudentComponent extends Component {
   constructor() {
@@ -11,28 +11,42 @@ class StudentComponent extends Component {
       address: '',
       email: '',
       mobileNumber: '',
+      items: [],
       submitted: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    debugger;
+    fetch('http://localhost:8000/users/studentProfile')
+    .then(res => res.json())
+    .then((data) => {
+      this.setState({  items: data })
+      console.log(this.state. items)
+    })
+    .catch(console.log('error'))  
+}
+
   handleChange(e) {
     // const { name, value } = e.target;
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(event) {
     event.preventDefault();
-    const { studentname,  address, email, mobileNumber } = this.state;
+    const { studentname, address, email, mobileNumber } = this.state;
     this.setState({ submitted: true });
     const profileuser = {
       studentname: this.state.studentname,
-       address: this.state. address,
+      address: this.state.address,
       email: this.state.email,
       mobileNumber: this.state.mobileNumber
     }
     studentProfile(profileuser).then(res => {
-      if (studentname &&  address && email && mobileNumber) {
+      if (studentname && address && email && mobileNumber) {
         this.props.history.push('/student')
+        window.alert(`registered successfully`)
       }
     })
   }
@@ -40,10 +54,11 @@ class StudentComponent extends Component {
     const { studentname, address, email, mobileNumber, submitted } = this.state;
     return (
       <div>
+         <StudentDetails items={this.state.items}/>
         <div className="conatiner">
 
           <div className="row">
-            <form action="#" className=" form col-md-3 offset-md-8">
+            <form action="#" className=" form col-md-3 offset-md-9">
               <div class="input-group ">
                 <input type="text" class="form-control" placeholder='Enter Student Name' />
                 <div className="input-group-append">
@@ -51,10 +66,7 @@ class StudentComponent extends Component {
                 </div>
               </div>
             </form>
-
-
-
-            <div className="col-md-4 offset-md-2 ">
+            <div className="col-md-3 offset-md-1 ">
               <h3>Student's Register Form</h3>
               <form className="form" onSubmit={this.handleSubmit}>
                 <div className={'form-group' + (submitted && !studentname ? ' has-error' : '')}>
@@ -91,14 +103,13 @@ class StudentComponent extends Component {
                 </div>
                 <div className={'form-group'}>
                   <button type="submit" className="btn btn-primary">Create</button>
-                  <a href="./index" className="btn btn-link text-decoration-none">Cancel</a>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <StudentProfile />
       </div>
+      
     );
   }
 }
