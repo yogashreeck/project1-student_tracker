@@ -38,7 +38,8 @@ export const studentProfile = profileuser => {
       studentname: profileuser.studentname,
       address: profileuser.address,
       email: profileuser.email,
-      mobileNumber: profileuser.mobileNumber
+      mobileNumber: profileuser.mobileNumber,
+      course:profileuser.course
     })
     .catch(err => {
       console.log(err)

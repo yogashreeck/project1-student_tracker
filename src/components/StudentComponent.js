@@ -47,6 +47,7 @@ class StudentComponent extends Component {
       studentname: this.state.studentname,
       address: this.state.address,
       email: this.state.email,
+      course: this.state.course,
       mobileNumber: this.state.mobileNumber
     }
     studentProfile(profileuser).then(res => {
@@ -120,7 +121,7 @@ class StudentComponent extends Component {
                 </div>
               </form>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 offset-md-1">
             <RepoList repos={this.state.repos} />
             </div>
           </div>
@@ -184,14 +185,18 @@ RepoList.defaultProps = {
 class RepoItem extends React.Component {
   render() {
     return (
-      <div className="list-group-item list-group-item-action flex-column align-items-start">
-        <div className="d-flex w-100 justify-content-between">
-          <h5 className="mb-1">{this.props.repo.studentname}</h5>
+      <div className="list-group-item list-group-item-action flex-column 
+      align-items-start">
+         <h3>Student Details</h3>
+        <div className=" ">
+         
+          <p><b>Student Name :</b> {this.props.repo.studentname}</p>
+        
+        <p><b>Email :</b> {this.props.repo.email}</p>
+        <p><b>Course :</b> {this.props.repo.course}</p>
+        <p><b>Address :</b> {this.props.repo.address}</p>
+        <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
         </div>
-        <p>{this.props.repo.email}</p>
-        <p className="mb-1">{this.props.repo.address}</p>
-        <p>{this.props.repo.mobileNumber}</p>
-        <small>{this.props.repo.html_url}</small>
       </div>
     )
   }
