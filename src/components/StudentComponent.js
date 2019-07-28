@@ -191,7 +191,6 @@ class RepoItem extends React.Component {
         <div className=" ">
          
           <p><b>Student Name :</b> {this.props.repo.studentname}</p>
-        
         <p><b>Email :</b> {this.props.repo.email}</p>
         <p><b>Course :</b> {this.props.repo.course}</p>
         <p><b>Address :</b> {this.props.repo.address}</p>
