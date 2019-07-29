@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { studentProfile } from './UserFunction';
 // import StudentDetails from './StudentDetails'
+import axios from 'axios';
 
 
 
@@ -23,7 +24,8 @@ class StudentComponent extends Component {
 
 
   handleSearch = (user) => {
-    let url = 'http://localhost:8000/users/studentProfile';
+    console.log(user);
+    let url = 'http://localhost:8000/users/studentProfile?studentname='+user
     fetch(url).
       then(response => response.json()).then((repos) => {
         console.log(repos);
@@ -66,10 +68,7 @@ class StudentComponent extends Component {
           <div className="row">
             <form action="#" className=" form col-md-3 offset-md-9">
               <div class="input-group ">
-                {/* <input handleSubmit={this.handleSearch} type="text" class="form-control" 
-              placeholder='Enter Student Name' /> */}
                 <SearchBar handleSubmit={this.handleSearch} />
-                {/* <RepoList repos={this.state.repos} /> */}
               </div>
             </form>
             <div className="col-md-3 offset-md-1 ">
@@ -117,7 +116,7 @@ class StudentComponent extends Component {
                   }
                 </div>
                 <div className={'form-group'}>
-                  <button type="submit" className="btn btn-primary">Create</button>
+                  <button type="submit" className="btn btn-primary">Save</button>
                 </div>
               </form>
             </div>
@@ -154,10 +153,10 @@ class SearchBar extends React.Component {
             type="text"
             placeholder="Type github user and press ENTER"
           /> */}
-            <input handleSubmit={this.handleSearch}   name="text" type="text" class="form-control" 
+            <input  name="text" type="text" class="form-control" 
               placeholder='Enter Student Name' />
           <div className="input-group-append">
-            <button class="btn btn-primary" type="button">Search</button>
+            <button class="btn btn-primary" type="submit">Search</button>
           </div>
         </div>
       </form>
@@ -183,22 +182,49 @@ RepoList.defaultProps = {
 };
 
 class RepoItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.delete = this.delete.bind(this);
+}
+// delete= () => {
+//   console.log();
+//     axios.delete('http://localhost:8000/users/studentProfile')
+//         .then(console.log('Deleted'))
+//         .catch(err => console.log(err))
+// }
+delete = (user) => {
+  console.log(user);
+  let url = 'http://localhost:8000/users/studentProfile/:id'
+  fetch(url).
+    then(response => response.json()).then((repos) => {
+      console.log(repos);
+      console.log(repos.length);
+      this.setState({
+        repos: repos
+      });
+    });
+};
+  
   render() {
     return (
       <div className="list-group-item list-group-item-action flex-column 
       align-items-start">
-         <h3>Student Details</h3>
-        <div className=" ">
+         <h3 className="text-center">Student Details</h3>
+        <div>
          
-          <p><b>Student Name :</b> {this.props.repo.studentname}</p>
+        <p><b>Student Name :</b> {this.props.repo.studentname}</p>
         <p><b>Email :</b> {this.props.repo.email}</p>
         <p><b>Course :</b> {this.props.repo.course}</p>
         <p><b>Address :</b> {this.props.repo.address}</p>
         <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
         </div>
+        <button type="button" className="btn btn-info">Update</button>
+        <button  onClick={this.delete} className="btn btn-danger" type="button">Delete</button>
       </div>
     )
   }
 }
+
+
 
 export default StudentComponent;
