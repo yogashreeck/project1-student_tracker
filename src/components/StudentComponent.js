@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { studentProfile } from './UserFunction';
-// import StudentDetails from './StudentDetails'
-import axios from 'axios';
+import RepoList from './ RepoList'
 
 
 
@@ -38,7 +37,6 @@ class StudentComponent extends Component {
 
 
   handleChange(e) {
-    // const { name, value } = e.target;
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(event) {
@@ -136,7 +134,6 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
   }
-
   handleSubmit = (event) => {
     event.preventDefault();
     const text = event.target.text.value;
@@ -147,12 +144,6 @@ class SearchBar extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className=" form col-md-11 offset-md-1">
         <div class="input-group ">
-          {/* <input
-            name="text"
-            className="form-control"
-            type="text"
-            placeholder="Type github user and press ENTER"
-          /> */}
             <input  name="text" type="text" class="form-control" 
               placeholder='Enter Student Name' />
           <div className="input-group-append">
@@ -161,67 +152,6 @@ class SearchBar extends React.Component {
         </div>
       </form>
     );
-  }
-}
-
-
-class RepoList extends React.Component {
-
-  render() {
-    var rows = [];
-    this.props.repos.map((repo, index) => rows.push(<RepoItem key={index} repo={repo} />))
-    return (
-      <div className="list-group">
-        {rows}
-      </div>
-    )
-  }
-}
-RepoList.defaultProps = {
-  repos: []
-};
-
-class RepoItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.delete = this.delete.bind(this);
-}
-// delete= () => {
-//   console.log();
-//     axios.delete('http://localhost:8000/users/studentProfile')
-//         .then(console.log('Deleted'))
-//         .catch(err => console.log(err))
-// }
-delete = (user) => {
-  console.log(user);
-  let url = 'http://localhost:8000/users/studentProfile/:id'
-  fetch(url).
-    then(response => response.json()).then((repos) => {
-      console.log(repos);
-      console.log(repos.length);
-      this.setState({
-        repos: repos
-      });
-    });
-};
-  
-  render() {
-    return (
-      <div className="list-group-item list-group-item-action flex-column 
-      align-items-start">
-         <h3 className="text-center">Student Details</h3>
-        <div>
-         
-        <p><b>Student Name :</b> {this.props.repo.studentname}</p>
-        <p><b>Email :</b> {this.props.repo.email}</p>
-        <p><b>Course :</b> {this.props.repo.course}</p>
-        <p><b>Address :</b> {this.props.repo.address}</p>
-        <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
-        </div>
-        <button type="button" className="btn btn-info">Update</button>
-        <button  onClick={this.delete} className="btn btn-danger" type="button">Delete</button>
-      </div>
-    )
   }
 }
 
