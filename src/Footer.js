@@ -27,7 +27,7 @@ class Footer extends Component {
 
 
 
-            <div className="social_icon col-md-4 offset-md-1 ">
+            <div className="social_icon col-md-4 offset-md-1">
               <h4>Connect With Us</h4>
               <SocialIcon url="https://twitter.com/" />
               <SocialIcon url="https://www.facebook.com/" />
