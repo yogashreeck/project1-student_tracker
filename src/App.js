@@ -23,6 +23,7 @@ function App() {
           <Route exact path='/register' component={RegisterComponent}></Route>
           <Route exact path='/login' component={LoginComponent}></Route>
           <Route exact path='/student' component={StudentComponent}></Route>
+          <Route exact path='/student/created' component={StudentComponent}></Route>
           <Route exact path='/course' component={CourseComponent}></Route>
 
           {/* <Route path="/student/list" exact component={StudentList} />
