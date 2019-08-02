@@ -58,7 +58,7 @@ class Header extends Component {
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><Link to="" class="nav-link">Students
+                <li class="nav-item"><Link to="#" class="nav-link">Students
                   <img src={student} alt="sicon" className="icon" /></Link></li>
                 <li class="nav-item"><Link to="" class="nav-link">Courses
                  <img src={course} alt="sicon" className="icon" /></Link></li>

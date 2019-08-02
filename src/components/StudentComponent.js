@@ -24,7 +24,7 @@ class StudentComponent extends Component {
 
   handleSearch = (user) => {
     console.log(user);
-    let url = 'http://localhost:8000/users/studentProfile?studentname='+user
+    let url = 'http://localhost:8000/users/studentProfile?studentname=' + user
     fetch(url).
       then(response => response.json()).then((repos) => {
         console.log(repos);
@@ -52,14 +52,14 @@ class StudentComponent extends Component {
     }
     studentProfile(profileuser).then(res => {
       if (studentname && address && email && mobileNumber) {
-        this.props.history.push('/student/created')
+        this.props.history.push('/student')
         window.alert(`registered successfully`)
       }
     })
   }
 
   render() {
-    const { studentname,course, address, email, mobileNumber, submitted } = this.state;
+    const { studentname, course, address, email, mobileNumber, submitted } = this.state;
     return (
       <div>
         <div className="conatiner">
@@ -82,11 +82,19 @@ class StudentComponent extends Component {
                 </div>
                 <div className={'form-group' + (submitted && !course ? ' has-error' : '')}>
                   <label For="course">Course</label>
-                  <input type="text" className="form-control" name="course" value={this.state.course}
-                    onChange={this.handleChange} />
-                  {submitted && !course &&
-                    <div className="help-block">Course is required</div>
-                  }
+                  {/* <input type="text" className="form-control" name="course" value={this.state.course}
+                    onChange={this.handleChange} /> */}
+                  <select id="myList" name="course" className="form-control"
+                    onChange={this.handleChange} >
+                    <option>HTML</option>
+                    <option>CSS</option>
+                    <option>JavaScript</option>
+                    <option>JQuery</option>
+                    <option>ReactJS</option>
+                    <option>AngularJS</option>
+                    <option>Autocad</option>
+                    <option>NodeJS</option>
+                  </select>
                 </div>
                 <div className={'form-group' + (submitted && !address ? ' has-error' : '')}>
                   <label For="address">Address</label>
@@ -106,8 +114,8 @@ class StudentComponent extends Component {
                 </div>
                 <div className={'form-group' + (submitted && !mobileNumber ? ' has-error' : '')}>
                   <label For="mobileNumber">Mobile Number</label>
-                  <input type="text" className="form-control" name="mobileNumber" 
-                  value={this.state.mobileNumber}
+                  <input type="text" className="form-control" name="mobileNumber"
+                    value={this.state.mobileNumber}
                     onChange={this.handleChange} />
                   {submitted && !mobileNumber &&
                     <div className="help-block">mobile Number is required</div>
@@ -119,7 +127,7 @@ class StudentComponent extends Component {
               </form>
             </div>
             <div className="col-md-4 offset-md-1">
-            <RepoList repos={this.state.repos} />
+              <RepoList repos={this.state.repos} />
             </div>
           </div>
         </div>
@@ -144,8 +152,8 @@ class SearchBar extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className=" form col-md-11 offset-md-1">
         <div class="input-group ">
-            <input  name="text" type="text" class="form-control" 
-              placeholder='Enter Student Name' />
+          <input name="text" type="text" class="form-control"
+            placeholder='Enter Student Name' />
           <div className="input-group-append">
             <button class="btn btn-primary" type="submit">Search</button>
           </div>

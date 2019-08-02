@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 
 
 // class CourseComponent extends Component {
@@ -121,9 +121,10 @@ class CourseComponent  extends Component {
       
     }
   }
-  handleClick() {
+  handleClick(event) {
+    console.log(event.target.textContent)
     fetch(
-      'http://localhost:8000/users/course'
+      'http://localhost:8000/users/course?course='+event.target.textContent
     )
       .then(res => res.json())
       .then(data => {
@@ -137,7 +138,7 @@ class CourseComponent  extends Component {
     return (
       <div className="container dropdown">
              <div className="row">
-            <div className="col-md-4 offset-md-5">
+            <div className="col-md-3 offset-md-1">
         <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"
          onClick={this.showMenu}> List of Courses </button>
         
@@ -152,11 +153,11 @@ class CourseComponent  extends Component {
               >
                 <button onClick={this.handleClick}><h3>HTML</h3></button><br />
                 <button><h3>CSS</h3></button><br />
-                <button><h3>JavaScript</h3></button><br />
-                <button><h3>JQuery</h3></button><br />
+                <button onClick={this.handleClick}><h3>JavaScript</h3></button><br />
+                <button onClick={this.handleClick}><h3>JQuery</h3></button><br />
                 <button><h3>ReactJS</h3></button><br />
                 <button><h3>AngularJS</h3></button><br />
-                <button><h3>Sass</h3></button><br />
+                <button><h3>Autocad</h3></button><br />
                 <button  onClick={this.handleClick}><h3>NodeJS</h3></button><br />
               </div>
             )
@@ -165,20 +166,26 @@ class CourseComponent  extends Component {
             )
         }
       </div>
-      </div>
-      {/* {this.state.users.map(user => <span>{user.studentname}</span>)} */}
-      <ul>
+      <div className="col-md-3 offset-md-1">
+    
           {this.state.users &&
             this.state.users.map((item, index) => (
-              <li key={index.toString()}>{item.studentname}{item.course}{item.email}</li>
-              
-            ))}
-        </ul>
+              <div className="list-group-item list-group-item-action flex-column 
+              align-items-start">
+                 <h3 className="text-center">Details</h3>
+              <div key={index.toString()} >
+              <p><b>Student Name :</b> {item.studentname}</p>
+              <p><b>Course :</b> {item.course}</p>
+              <p><b>Email :</b>{item.email}</p>
+              <p><b>Mobile Number :</b>{item.mobileNumber}</p>
+              </div>
+              </div>
+              ))}
+      </div>
+      </div>
       </div>
     );
   }
 }
 
 export default CourseComponent;
-
-
