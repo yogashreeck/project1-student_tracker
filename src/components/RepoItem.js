@@ -19,6 +19,7 @@ class RepoItem extends React.Component {
           })
             .then((response) => response.text()
             )
+            
       }
         
         render() {
@@ -36,7 +37,7 @@ class RepoItem extends React.Component {
               <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
               </div>
               <button type="button" className="btn btn-info">Update</button>
-              <button  onClick={this.delete.bind(this, this.props.repo._id)} className="btn btn-danger"
+              <button  onClick={this.delete.bind(this, this.props.repo._id)}  className="btn btn-danger"
                type="button">Delete</button>
             </div>
           )

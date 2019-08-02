@@ -96,9 +96,9 @@ class CourseComponent  extends Component {
     
     this.state = {
       showMenu: false,
-      users:[]
+      users:[],
     };
-    
+    this.handleClick = this.handleClick.bind(this)
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
   }
@@ -121,26 +121,17 @@ class CourseComponent  extends Component {
       
     }
   }
-
-  handleClick(id) {
-    debugger;
-    console.log(id)
-    alert(id);
-    fetch('/users/course', 
-        {
-          method: 'GET', 
-          // body: JSON.stringify({
-          //     id: id,
-          // })
+  handleClick() {
+    fetch(
+      'http://localhost:8000/users/course'
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.setState({users: data})
       })
-        .then((response) => response.text()
-        )
-        console.log('hi');
-        // this.setState({
-        //  id: id
-        // });
+      .catch(e => console.log('err', e))
   }
- 
 
   render() {
     return (
@@ -175,8 +166,14 @@ class CourseComponent  extends Component {
         }
       </div>
       </div>
-      {this.state.users.map(user => <span>{user.studentname}</span>)}
-
+      {/* {this.state.users.map(user => <span>{user.studentname}</span>)} */}
+      <ul>
+          {this.state.users &&
+            this.state.users.map((item, index) => (
+              <li key={index.toString()}>{item.studentname}{item.course}{item.email}</li>
+              
+            ))}
+        </ul>
       </div>
     );
   }
