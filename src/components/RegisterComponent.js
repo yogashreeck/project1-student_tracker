@@ -100,7 +100,7 @@ class RegisterComponent extends Component {
                 </div>
                 <div className={'form-group' + (submitted && !mobileNumber ? ' has-error' : '')}>
                   <label For="mobileNumber">Mobile Number</label>
-                  <input type="text" className="form-control" name="mobileNumber" value={this.state.mobileNumber}
+                  <input type="number" className="form-control" name="mobileNumber" value={this.state.mobileNumber}
                     onChange={this.handleChange} />
                   {submitted && !mobileNumber &&
                     <div className="help-block">mobile Number is required</div>

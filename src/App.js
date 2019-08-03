@@ -8,10 +8,8 @@ import StudentComponent from './components/StudentComponent';
 import CourseComponent from './components/CourseComponent';
 import Header from './Header';
 import Footer from './Footer';
+import Edit from './components/Edit'
 
-// import  StudentList  from './components/students/StudentList'
-// import  StudentInsert  from './components/students/StudentInsert'
-// import StudentUpdate from './components/students/StudentUpdate'
 
 function App() {
   return (
@@ -24,14 +22,8 @@ function App() {
           <Route exact path='/login' component={LoginComponent}></Route>
           <Route exact path='/student' component={StudentComponent}></Route>
           <Route exact path='/student/created' component={StudentComponent}></Route>
+          <Route exact path='/student/edit/:id' component={Edit}></Route>
           <Route exact path='/course' component={CourseComponent}></Route>
-
-          {/* <Route path="/student/list" exact component={StudentList} />
-                <Route path="/student" exact component={StudentInsert} />
-                <Route
-                    path="/student/:id"
-                    exact
-                    component={StudentUpdate} /> */}
         </switch>
       </Router>
       <Footer />

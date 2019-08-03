@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { studentProfile } from './UserFunction';
-import RepoList from './ RepoList'
 
 
-
-class StudentComponent extends Component {
+class Edit extends Component {
   constructor(props) {
     super(props);
 
@@ -20,20 +18,6 @@ class StudentComponent extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-
-  handleSearch = (user) => {
-    console.log(user);
-    let url = 'http://localhost:8000/users/studentProfile?studentname=' + user
-    fetch(url).
-      then(response => response.json()).then((repos) => {
-        console.log(repos);
-        console.log(repos.length);
-        this.setState({
-          repos: repos
-        });
-      });
-  };
 
 
   handleChange(e) {
@@ -66,11 +50,10 @@ class StudentComponent extends Component {
           <div className="row">
             <form action="#" className=" form col-md-3 offset-md-9">
               <div class="input-group ">
-                <SearchBar handleSubmit={this.handleSearch} />
               </div>
             </form>
             <div className="col-md-3 offset-md-1 ">
-              <h3>Student's Register Form</h3>
+              <h3> Edit Student Details</h3>
               <form className="form" onSubmit={this.handleSubmit}>
                 <div className={'form-group' + (submitted && !studentname ? ' has-error' : '')}>
                   <label For="studentName">Student Name</label>
@@ -82,8 +65,6 @@ class StudentComponent extends Component {
                 </div>
                 <div className={'form-group' + (submitted && !course ? ' has-error' : '')}>
                   <label For="course">Course</label>
-                  {/* <input type="text" className="form-control" name="course" value={this.state.course}
-                    onChange={this.handleChange} /> */}
                   <select id="myList" name="course" className="form-control"
                     onChange={this.handleChange} >
                     <option>HTML</option>
@@ -122,12 +103,12 @@ class StudentComponent extends Component {
                   }
                 </div>
                 <div className={'form-group'}>
-                  <button type="submit" className="btn btn-primary">Save</button>
+                  <button type="submit" className="btn btn-primary">Update</button>
+                  <button type="submit" className="btn btn-danger text-center">Cancel</button>
                 </div>
               </form>
             </div>
             <div className="col-md-4 offset-md-1">
-              <RepoList repos={this.state.repos} />
             </div>
           </div>
         </div>
@@ -138,31 +119,4 @@ class StudentComponent extends Component {
 
 }
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const text = event.target.text.value;
-    this.props.handleSubmit(text);
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit} className=" form col-md-11 offset-md-1">
-        <div class="input-group ">
-          <input name="text" type="text" class="form-control"
-            placeholder='Enter Student Name' />
-          <div className="input-group-append">
-            <button class="btn btn-primary" type="submit">Search</button>
-          </div>
-        </div>
-      </form>
-    );
-  }
-}
-
-
-
-export default StudentComponent;
+export default Edit;
