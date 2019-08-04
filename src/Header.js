@@ -60,11 +60,11 @@ class Header extends Component {
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><Link to="#" class="nav-link">Students
                   <img src={student} alt="sicon" className="icon" /></Link></li>
-                <li class="nav-item"><Link to="" class="nav-link">Courses
+                <li class="nav-item"><Link to="#" class="nav-link">Courses
                  <img src={course} alt="sicon" className="icon" /></Link></li>
                 <li class="nav-item"><Link to="./register" class="nav-link">Register
                   <img src={register} alt="sicon" className="icon" /></Link></li>
-                <li class="nav-item"><Link to="" class="nav-link">Login
+                <li class="nav-item"><Link to="#" class="nav-link">Login
                   <img src={login} alt="sicon" className="icon" /></Link></li>
               </ul>
             </div>

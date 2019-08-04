@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { studentProfile } from './UserFunction';
+import { Link } from 'react-router-dom';
 
 
 class Edit extends Component {
@@ -12,7 +13,6 @@ class Edit extends Component {
       address: '',
       email: '',
       mobileNumber: '',
-      repos: [],
       submitted: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,14 @@ class Edit extends Component {
 
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    // this.setState({ [e.target.name]: e.target.value });
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
   handleSubmit(event) {
     event.preventDefault();
@@ -40,6 +47,24 @@ class Edit extends Component {
         window.alert(`registered successfully`)
       }
     })
+  }
+
+  edit(id) {
+    debugger;
+    console.log(id)
+    alert(id);
+    fetch('/users/studentProfile/:id', 
+        {
+          method: 'PUT', 
+          headers: {'Content-Type': 'application/json'},
+
+          body: JSON.stringify({
+              id: id,
+          })
+      })
+        .then(response => response.text()
+        )
+        
   }
 
   render() {
@@ -103,7 +128,8 @@ class Edit extends Component {
                   }
                 </div>
                 <div className={'form-group'}>
-                  <button type="submit" className="btn btn-primary">Update</button>
+                  <Link type="submit" className="btn btn-primary"  to={`/student`}
+                 >Update</Link>
                   <button type="submit" className="btn btn-danger text-center">Cancel</button>
                 </div>
               </form>

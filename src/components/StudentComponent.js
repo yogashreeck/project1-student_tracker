@@ -152,7 +152,7 @@ class SearchBar extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} className=" form col-md-11 offset-md-1">
         <div class="input-group ">
-          <input name="text" type="text" class="form-control"
+          <input name="text" type="text" class="form-control"  
             placeholder='Enter Student Name' />
           <div className="input-group-append">
             <button class="btn btn-primary" type="submit">Search</button>

@@ -21,23 +21,6 @@ class RepoItem extends React.Component {
             .then(response => response.text()
             )       
       }
-      edit(id) {
-        debugger;
-        console.log(id)
-        alert(id);
-        fetch('/users/studentProfile', 
-            {
-              method: 'PUT', 
-              headers: {'Content-Type': 'application/json'},
-
-              body: JSON.stringify({
-                  id: id,
-              })
-          })
-            .then(response => response.text()
-            )
-            
-      }
         render() {
           debugger;
           return (
@@ -52,10 +35,10 @@ class RepoItem extends React.Component {
               <p><b>Address :</b> {this.props.repo.address}</p>
               <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
               </div>
-              <Link  type="button" className="btn btn-info" onClick={this.delete.bind(this, this.props.repo._id)}
+              <Link  type="button" className="btn btn-info" 
                to={`/student/edit/:id`}>Update</Link>
-              <button  onClick={this.delete.bind(this, this.props.repo._id)}  className="btn btn-danger"
-               type="button">Delete</button>
+              <Link type="button" onClick={this.delete.bind(this, this.props.repo._id)}  className="btn btn-danger"
+               to={`/student`}>Delete</Link>
             </div>
           )
         }
