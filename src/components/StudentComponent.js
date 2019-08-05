@@ -52,7 +52,7 @@ class StudentComponent extends Component {
     }
     studentProfile(profileuser).then(res => {
       if (studentname && address && email && mobileNumber) {
-        this.props.history.push('/student')
+        this.props.history.push('/student/created')
         window.alert(`registered successfully`)
       }
     })
@@ -73,7 +73,7 @@ class StudentComponent extends Component {
               <h3>Student's Register Form</h3>
               <form className="form" onSubmit={this.handleSubmit}>
                 <div className={'form-group' + (submitted && !studentname ? ' has-error' : '')}>
-                  <label For="studentName">Student Name</label>
+                  <label htmlFor="studentName">Student Name</label>
                   <input type="text" className="form-control" name="studentname" value={this.state.studentname}
                     onChange={this.handleChange} />
                   {submitted && !studentname &&
@@ -81,7 +81,7 @@ class StudentComponent extends Component {
                   }
                 </div>
                 <div className={'form-group' + (submitted && !course ? ' has-error' : '')}>
-                  <label For="course">Course</label>
+                  <label htmlFor="course">Course</label>
                   {/* <input type="text" className="form-control" name="course" value={this.state.course}
                     onChange={this.handleChange} /> */}
                   <select id="myList" name="course" className="form-control"
@@ -97,7 +97,7 @@ class StudentComponent extends Component {
                   </select>
                 </div>
                 <div className={'form-group' + (submitted && !address ? ' has-error' : '')}>
-                  <label For="address">Address</label>
+                  <label htmlFor="address">Address</label>
                   <input type="text" className="form-control" name="address" value={this.state.address}
                     onChange={this.handleChange} />
                   {submitted && !address &&
@@ -105,15 +105,15 @@ class StudentComponent extends Component {
                   }
                 </div>
                 <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-                  <label For="email">Email</label>
-                  <input type="text" className="form-control" name="email" value={this.state.email}
-                    onChange={this.handleChange} />
+                  <label htmlFor="email">Email</label>
+                  <input type="email" className="form-control" name="email" value={this.state.email}
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"   onChange={this.handleChange} />
                   {submitted && !email &&
                     <div className="help-block">Email is required</div>
                   }
                 </div>
                 <div className={'form-group' + (submitted && !mobileNumber ? ' has-error' : '')}>
-                  <label For="mobileNumber">Mobile Number</label>
+                  <label htmlFor="mobileNumber">Mobile Number</label>
                   <input type="number" className="form-control" name="mobileNumber"
                     value={this.state.mobileNumber}
                     onChange={this.handleChange} />

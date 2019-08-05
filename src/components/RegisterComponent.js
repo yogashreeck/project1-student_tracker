@@ -4,6 +4,7 @@ import './index.css';
 
 
 class RegisterComponent extends Component {
+  
   constructor() {
     super();
 
@@ -19,11 +20,12 @@ class RegisterComponent extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+ 
   handleChange(e) {
     // const { name, value } = e.target;
     this.setState({ [e.target.name]: e.target.value });
   }
+  
   handleSubmit(event) {
     event.preventDefault();
     const { firstname, username, email, password, confirmPassword, mobileNumber } = this.state;
@@ -41,8 +43,9 @@ class RegisterComponent extends Component {
       mobileNumber: this.state.mobileNumber
     }
     register(user).then(res => {
-      if (firstname && username && email && password && confirmPassword && mobileNumber) {
+      if (firstname && username && email && password && confirmPassword && mobileNumber && password === confirmPassword) {
         this.props.history.push('/login')
+        console.log('matched')
       }
     })
   }
@@ -51,6 +54,7 @@ class RegisterComponent extends Component {
 
   render() {
     const { firstname, username, email, password, confirmPassword, mobileNumber, submitted } = this.state;
+   
     return (
       <div className="background" >
         <div className="container" id="register-form">
@@ -59,7 +63,7 @@ class RegisterComponent extends Component {
               <h3>Register</h3>
               <form className="form" onSubmit={this.handleSubmit}>
                 <div className={'form-group' + (submitted && !firstname ? ' has-error' : '')}>
-                  <label For="firstname">First Name</label>
+                  <label htmlFor="firstname">First Name</label>
                   <input type="text" className="form-control" name="firstname" value={this.state.firstname}
                     onChange={this.handleChange} />
                   {submitted && !firstname &&
@@ -67,23 +71,24 @@ class RegisterComponent extends Component {
                   }
                 </div>
                 <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-                  <label For="username">Username</label>
+                  <label htmlFor="username">Username</label>
                   <input type="text" className="form-control" name="username" value={this.state.username}
                     onChange={this.handleChange} />
                   {submitted && !username &&
                     <div className="help-block">Username is required</div>
                   }
                 </div>
-                <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
-                  <label For="email">Email</label>
-                  <input type="text" className="form-control" name="email" value={this.state.email}
+                <div className={'form-group' + (submitted && !email  ? ' has-error' : '')}>
+                  <label htmlFor="email">Email</label>
+                  <input type="email" className="form-control" name="email" value={this.state.email}  id="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
                     onChange={this.handleChange} />
-                  {submitted && !email &&
+                  {submitted && !email && 
                     <div className="help-block">Email is required</div>
                   }
                 </div>
                 <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                  <label For="password">Password</label>
+                  <label htmlFor="password">Password</label>
                   <input type="password" className="form-control" name="password" value={this.state.password}
                     onChange={this.handleChange} />
                   {submitted && !password &&
@@ -91,7 +96,7 @@ class RegisterComponent extends Component {
                   }
                 </div>
                 <div className={'form-group' + (submitted && !confirmPassword ? ' has-error' : '')}>
-                  <label For="confirmPassword">Confirm Password</label>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
                   <input type="password" className="form-control" name="confirmPassword" value={this.state.confirmPassword}
                     onChange={this.handleChange} />
                   {submitted && !confirmPassword &&
@@ -99,7 +104,7 @@ class RegisterComponent extends Component {
                   }
                 </div>
                 <div className={'form-group' + (submitted && !mobileNumber ? ' has-error' : '')}>
-                  <label For="mobileNumber">Mobile Number</label>
+                  <label htmlFor="mobileNumber">Mobile Number</label>
                   <input type="number" className="form-control" name="mobileNumber" value={this.state.mobileNumber}
                     onChange={this.handleChange} />
                   {submitted && !mobileNumber &&

@@ -21,19 +21,14 @@ class LoginComponent extends Component {
   handleSubmit(e) {
     e.preventDefault();
       const { email, password } = this.state;
-       this.setState({ submitted: true });
-    //    if (email && password) {
-    //     this.props.history.push('/student')
-    // }else{
-    //   console.log('login successful');
-    // }
+       this.setState({ submitted: true })
 
     const user = {
       email: this.state.email,
       password: this.state.password
     }
     login(user).then(res => {
-      if (email && password) {
+      if (res && email && password) {
         this.props.history.push('/student')
     }else{
       console.log('login successful');
@@ -53,8 +48,8 @@ class LoginComponent extends Component {
             <form className="form" onSubmit={this.handleSubmit} >
               <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
                 <label htmlFor="email"><b>Email</b></label>
-                <input type="text" className="form-control" name="email" value={this.state.email}
-                  onChange={this.handleChange} />
+                <input type="email" className="form-control" name="email" value={this.state.email}
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  onChange={this.handleChange} />
                 {submitted && !email &&
                   <div className="help-block" >email is required</div>
                 }
