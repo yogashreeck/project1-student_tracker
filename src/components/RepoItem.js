@@ -19,7 +19,8 @@ class RepoItem extends React.Component {
               })
           })
             .then(response => response.text()
-            )       
+            ) 
+            window.location = '/student';      
       }
         render() {
           debugger;
@@ -36,7 +37,7 @@ class RepoItem extends React.Component {
               <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
               </div>
               <Link  type="button" className="btn btn-info" 
-               to={`/student/edit/:id`}>Update</Link>
+               to={`/student/edit`}>Edit</Link>
               <Link type="button" onClick={this.delete.bind(this, this.props.repo._id)}  className="btn btn-danger"
                to={`/student`}>Delete</Link>
             </div>

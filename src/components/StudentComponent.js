@@ -52,8 +52,9 @@ class StudentComponent extends Component {
     }
     studentProfile(profileuser).then(res => {
       if (studentname && address && email && mobileNumber) {
-        this.props.history.push('/student/created')
+        // this.props.history.push('/student/created')
         window.alert(`registered successfully`)
+        window.location = '/student';  
       }
     })
   }
