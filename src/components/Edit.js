@@ -39,7 +39,7 @@ class Edit extends Component {
       course: this.state.course,
       mobileNumber: this.state.mobileNumber
     }
-    axios.post('http://localhost:5000/studentProfile/update/'+this.props.match.params.id, profileuser)
+    axios.post('http://localhost:8000/studentProfile/update/'+this.props.match.params.id, profileuser)
     .then(res => console.log(res.data));
     this.setState({
       studentname: '',
@@ -59,7 +59,7 @@ class Edit extends Component {
   componentDidMount(res) {
     console.log(res)
     debugger;
-    axios.get('http://localhost:5000/studentProfile/edit/'+this.props.match.params.id)
+    axios.get('http://localhost:8000/studentProfile/edit/:id='+this.props.match.params.id)
         .then(res => {
             this.setState({ 
               studentname: res.data.studentname,

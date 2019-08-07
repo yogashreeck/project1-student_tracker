@@ -75,7 +75,8 @@ class StudentComponent extends Component {
               <form className="form" onSubmit={this.handleSubmit}>
                 <div className={'form-group' + (submitted && !studentname ? ' has-error' : '')}>
                   <label htmlFor="studentName">Student Name</label>
-                  <input type="text" className="form-control" name="studentname" value={this.state.studentname}
+                  <input type="text" className="form-control" name="studentname"
+                   value={this.state.studentname}
                     onChange={this.handleChange} />
                   {submitted && !studentname &&
                     <div className="help-block">Student Name is required</div>
