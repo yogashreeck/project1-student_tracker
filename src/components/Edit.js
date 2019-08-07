@@ -56,10 +56,10 @@ class Edit extends Component {
     })
   }
 
-  componentDidMount(res) {
-    console.log(res)
+  componentDidMount(id) {
+    console.log(this.props.match.params.id)
     debugger;
-    axios.get('http://localhost:8000/studentProfile/edit/'+this.props.match.params.id)
+    axios.get('http://localhost:8000/users/edit/id'+this.props.match.params.id)
         .then(res => {
             this.setState({ 
               studentname: res.data.studentname,

@@ -64,7 +64,7 @@ class Header extends Component {
                  <img src={course} alt="sicon" className="icon" /></Link></li>
                 <li class="nav-item"><Link to="./register" class="nav-link">Register
                   <img src={register} alt="sicon" className="icon" /></Link></li>
-                <li class="nav-item"><Link to="#" class="nav-link">Login
+                <li class="nav-item"><Link to="/login" class="nav-link">Login
                   <img src={login} alt="sicon" className="icon" /></Link></li>
               </ul>
             </div>
