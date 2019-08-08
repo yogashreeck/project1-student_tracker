@@ -61,7 +61,7 @@ class RegisterComponent extends Component {
           <div className="row" >
             <div className="col-md-4 offset-md-4 reg-block">
               <h3>Register</h3>
-              <form className="form" onSubmit={this.handleSubmit}>
+              <form className="form" onSubmit={this.handleSubmit} data-toggle="validator" role="form">
                 <div className={'form-group' + (submitted && !firstname ? ' has-error' : '')}>
                   <label htmlFor="firstname">First Name</label>
                   <input type="text" className="form-control" name="firstname" value={this.state.firstname}
@@ -81,7 +81,6 @@ class RegisterComponent extends Component {
                 <div className={'form-group' + (submitted && !email  ? ' has-error' : '')}>
                   <label htmlFor="email">Email</label>
                   <input type="email" className="form-control" name="email" value={this.state.email}  id="email"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
                     onChange={this.handleChange} />
                   {submitted && !email && 
                     <div className="help-block">Email is required</div>

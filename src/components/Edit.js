@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { studentProfile } from './UserFunction';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 class Edit extends Component {
@@ -30,7 +29,6 @@ class Edit extends Component {
   // }
   handleSubmit(event) {
     event.preventDefault();
-    const { studentname, address, email, mobileNumber } = this.state;
     this.setState({ submitted: true });
     const profileuser = {
       studentname: this.state.studentname,
@@ -39,7 +37,7 @@ class Edit extends Component {
       course: this.state.course,
       mobileNumber: this.state.mobileNumber
     }
-    axios.post('http://localhost:8000/studentProfile/update/'+this.props.match.params.id, profileuser)
+    axios.post('http://localhost:8000/studentProfile/update/:id'+this.props.match.params.id, profileuser)
     .then(res => console.log(res.data));
     this.setState({
       studentname: '',
@@ -48,15 +46,10 @@ class Edit extends Component {
       course:'',
       mobileNumber:''
     })
-    studentProfile(profileuser).then(res => {
-      if (studentname && address && email && mobileNumber) {
-        this.props.history.push('/student')
-        window.alert(`registered successfully`)
-      }
-    })
+    this.props.history.push('/student');
   }
 
-  componentDidMount(id) {
+  componentDidMount() {
     console.log(this.props.match.params.id)
     debugger;
     axios.get('http://localhost:8000/users/edit/id'+this.props.match.params.id)
@@ -101,7 +94,6 @@ onChangeMobile(e) {
 }
 
   render() {
-    const { studentname, course, address, email, mobileNumber, submitted } = this.state;
     return (
       <div>
         <div className="conatiner">
@@ -114,15 +106,12 @@ onChangeMobile(e) {
               <h3> Edit Student Details</h3>
               <form className="form" onSubmit={this.handleSubmit}>
 
-                <div className={'form-group' + (submitted && !studentname ? ' has-error' : '')}>
+                <div className={'form-group' }>
                   <label For="studentName">Student Name</label>
                   <input type="text" className="form-control" name="studentname" value={this.state.studentname}
                     onChange={this.onChangeStudentName} />
-                  {submitted && !studentname &&
-                    <div className="help-block">Student Name is required</div>
-                  }
                 </div>
-                <div className={'form-group' + (submitted && !course ? ' has-error' : '')}>
+                <div className={'form-group' }>
                   <label For="course">Course</label>
                   <select id="myList" name="course" className="form-control"
                     onChange={this.onChangeCourse} >
@@ -136,33 +125,24 @@ onChangeMobile(e) {
                     <option>NodeJS</option>
                   </select>
                 </div>
-                <div className={'form-group' + (submitted && !address ? ' has-error' : '')}>
+                <div className={'form-group'}>
                   <label For="address">Address</label>
                   <input type="text" className="form-control" name="address" value={this.state.address}
                     onChange={this.onChangeAddress} />
-                  {submitted && !address &&
-                    <div className="help-block">Address is required</div>
-                  }
                 </div>
-                <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+                <div className={'form-group' }>
                   <label For="email">Email</label>
                   <input type="text" className="form-control" name="email" value={this.state.email}
                     onChange={this.onChangeEmail} />
-                  {submitted && !email &&
-                    <div className="help-block">Email is required</div>
-                  }
                 </div>
-                <div className={'form-group' + (submitted && !mobileNumber ? ' has-error' : '')}>
+                <div className={'form-group' }>
                   <label For="mobileNumber">Mobile Number</label>
                   <input type="number" className="form-control" name="mobileNumber"
                     value={this.state.mobileNumber}
                     onChange={this.onChangeMobile} />
-                  {submitted && !mobileNumber &&
-                    <div className="help-block">mobile Number is required</div>
-                  }
                 </div>
                 <div className={'form-group'}>
-                  <Link type="submit" className="btn btn-primary"  to={`/student`}>Update</Link>
+                  <input type="submit" className="btn btn-primary" value="Update"/>
                   <button type="submit" className="btn btn-danger text-center">Cancel</button>
                 </div>
               </form>

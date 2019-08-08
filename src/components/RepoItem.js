@@ -29,15 +29,15 @@ class RepoItem extends React.Component {
             align-items-start">
                <h3 className="text-center">Student Details</h3>
               <div>
-               
+               <p>{this.props.repo._id}</p>
               <p><b>Student Name :</b> {this.props.repo.studentname}</p>
               <p><b>Email :</b> {this.props.repo.email}</p>
               <p><b>Course :</b> {this.props.repo.course}</p>
               <p><b>Address :</b> {this.props.repo.address}</p>
               <p><b>Mobile Number : </b>{this.props.repo.mobileNumber}</p>
               </div>
-              <Link  type="button" className="btn btn-info" 
-               to={`/student/edit`}>Edit</Link>
+              <Link  type="button" className="btn btn-info"  to={"/student/edit/"+this.props.repo._id}
+              >Edit</Link>
               <Link type="button" onClick={this.delete.bind(this, this.props.repo._id)}  className="btn btn-danger"
                to={`/student`}>Delete</Link>
             </div>

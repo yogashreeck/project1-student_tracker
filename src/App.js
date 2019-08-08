@@ -22,7 +22,7 @@ function App() {
           <Route exact path='/login' component={LoginComponent}></Route>
           <Route exact path='/student' component={StudentComponent}></Route>
           <Route exact path='/student/created' component={StudentComponent}></Route>
-          <Route exact path='/student/edit' component={Edit}></Route>
+          <Route exact path='/student/edit/:id' component={Edit}></Route>
           <Route exact path='/course' component={CourseComponent}></Route>
         </switch>
       </Router>
