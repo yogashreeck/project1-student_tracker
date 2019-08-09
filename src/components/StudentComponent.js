@@ -25,8 +25,8 @@ class StudentComponent extends Component {
   handleSearch = (user) => {
     console.log(user);
     let url = 'http://localhost:8000/users/studentProfile?studentname=' + user
-    fetch(url).
-      then(response => response.json()).then((repos) => {
+    fetch(url)
+    .then(response => response.json()).then((repos) => {
         console.log(repos);
         console.log(repos.length);
         this.setState({
@@ -52,7 +52,6 @@ class StudentComponent extends Component {
     }
     studentProfile(profileuser).then(res => {
       if (studentname && address && email && mobileNumber) {
-        // this.props.history.push('/student/created')
         window.alert(`registered successfully`)
         window.location = '/student';  
       }
@@ -65,11 +64,13 @@ class StudentComponent extends Component {
       <div>
         <div className="conatiner">
           <div className="row">
-            <form action="#" className=" form col-md-3 offset-md-9">
+            <div className="col-md-3 offset-md-9">
+            <form action="#" className=" form">
               <div class="input-group ">
                 <SearchBar handleSubmit={this.handleSearch} />
               </div>
             </form>
+            </div>
             <div className="col-md-3 offset-md-1 ">
               <h3>Student's Register Form</h3>
               <form className="form" onSubmit={this.handleSubmit}>
@@ -84,8 +85,6 @@ class StudentComponent extends Component {
                 </div>
                 <div className={'form-group' + (submitted && !course ? ' has-error' : '')}>
                   <label htmlFor="course">Course</label>
-                  {/* <input type="text" className="form-control" name="course" value={this.state.course}
-                    onChange={this.handleChange} /> */}
                   <select id="myList" name="course" className="form-control"
                     onChange={this.handleChange} >
                     <option>HTML</option>
@@ -152,7 +151,8 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className=" form col-md-11 offset-md-1">
+      <div>
+      <form onSubmit={this.handleSubmit} className=" form ">
         <div class="input-group ">
           <input name="text" type="text" class="form-control"  
             placeholder='Enter Student Name' />
@@ -161,6 +161,7 @@ class SearchBar extends React.Component {
           </div>
         </div>
       </form>
+      </div>
     );
   }
 }

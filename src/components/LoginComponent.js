@@ -7,7 +7,9 @@ class LoginComponent extends Component {
     this.state = {
       email: '',
       password: '',
-      submitted: false
+      emailError: '',
+      passwordError: '',
+     
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -20,16 +22,29 @@ class LoginComponent extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-      const { email, password } = this.state;
-       this.setState({ submitted: true })
+    let reg_pwd = /^[@#*&_%$!][A-Za-z0-9]{4}$/;
+    let reg_email = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    let t = 0;
+    if (!this.state.email) this.setState({ emailError: 'Email is required' });
+    else if (!reg_email.test(this.state.email)) this.setState({ emailError: 'Invalid Email' });
+    else {
+      t++;
+      this.setState({ emailError: '' });
+    }
 
+    if (!this.state.password) this.setState({ passwordError: 'Password is required' });
+    else if (!reg_pwd.test(this.state.password)) this.setState({ passwordError: 'Password should standerd format' });
+    else {
+      t++;
+      this.setState({ passwordError: '' });
+    }
     const user = {
       email: this.state.email,
       password: this.state.password
     }
     login(user).then(res => {
-      if (res && email && password) {
-        this.props.history.push('/student')
+      if (res) {
+        window.location = '/student';    
     }else{
       console.log('login successful');
     }
@@ -39,28 +54,25 @@ class LoginComponent extends Component {
 
 
   render() {
-    const { email, password, submitted } = this.state;
+   
     return (
       <div className="login">
         <div className="container">
           <div className="col-md-4 col-lg-4 offset-md-4 log-block">
             <h2>Login</h2>
             <form className="form" onSubmit={this.handleSubmit} >
-              <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+              <div className={'form-group' }>
                 <label htmlFor="email"><b>Email</b></label>
-                <input type="email" className="form-control" name="email" value={this.state.email}
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  onChange={this.handleChange} />
-                {submitted && !email &&
-                  <div className="help-block" >email is required</div>
-                }
+                <input type="text" className="form-control" name="email" value={this.state.email}
+                    onChange={this.handleChange} />
+                  <div className="help-block text-danger" >{this.state.emailError}</div>
               </div>
-              <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+
+              <div className={'form-group' }>
                 <label htmlFor="password"><b>Password</b></label>
                 <input type="password" className="form-control" name="password" value={this.state.password}
                   onChange={this.handleChange} />
-                {submitted && !password &&
-                  <div className="help-block">Password is required</div>
-                }
+                  <div className="help-block text-danger">{this.state.passwordError}</div>
               </div>
               <div className="form-group">
                 <button type="submit" className="btn btn-primary">Login</button>

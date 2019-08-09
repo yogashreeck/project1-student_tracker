@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { register } from './UserFunction'
 import './index.css';
 
-
 class RegisterComponent extends Component {
-  
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state = {
       firstname: '',
       username: '',
@@ -15,26 +12,67 @@ class RegisterComponent extends Component {
       password: '',
       confirmPassword: '',
       mobileNumber: '',
-      submitted: false
-    };
+      fnameError: '',
+      lnameError: '',
+      emailError: '',
+      passwordError: '',
+      confirmError: '',
+      mobileError: '',
+    }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
- 
-  handleChange(e) {
-    // const { name, value } = e.target;
-    this.setState({ [e.target.name]: e.target.value });
-  }
-  
-  handleSubmit(event) {
-    event.preventDefault();
-    const { firstname, username, email, password, confirmPassword, mobileNumber } = this.state;
-    this.setState({ submitted: true });
-    // if (firstName && username && email && password && confirmPassword && mobileNumber) {
-    //   this.props.history.push('/login');
 
-    // }
-    const user = {
+  handleSubmit(event) {
+    debugger;
+    event.preventDefault();
+
+    let reg_user = /^[A-Za-z]/;
+    let reg_pwd = /^[@#*&_%$!][A-Za-z0-9]{4}$/;
+    let reg_email = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    let reg_mobile = /^[0-9]/;
+
+    let t = 0;
+    if (!this.state.firstname) this.setState({ fnameError: 'Firstname is required' });
+    else if (!reg_user.test(this.state.firstname)) this.setState({ fnameError: 'Invalid Firstname' });
+    else {
+      t++;
+      this.setState({ fnameError: '' });
+    }
+
+    if (!this.state.username) this.setState({ userError: 'Username is required' });
+    else if (!reg_user.test(this.state.username)) this.setState({ userError: 'Invalid Username' });
+    else {
+      t++;
+      this.setState({ userError: '' });
+    }
+    if (!this.state.email) this.setState({ emailError: 'Email is required' });
+    else if (!reg_email.test(this.state.email)) this.setState({ emailError: 'Invalid Email' });
+    else {
+      t++;
+      this.setState({ emailError: '' });
+    }
+
+    if (!this.state.password) this.setState({ passwordError: 'Password is required' });
+    else if (!reg_pwd.test(this.state.password)) this.setState({ passwordError: 'Password should standerd format' });
+    else {
+      t++;
+      this.setState({ passwordError: '' });
+    }
+    if (!this.state.confirmPassword) this.setState({ confirmError: 'ConfirmPassword is required' });
+    else if ((this.state.password) !== (!this.state.confirmPassword)) this.setState({ confirmError: 'Password not matched' });
+    else {
+      t++;
+      this.setState({ confirmError: '' });
+    }
+    if (!this.state.mobileNumber) this.setState({ mobileError: 'mobile Number is required' });
+    else if (!reg_mobile.test(this.state.mobileNumber)) this.setState({ mobileError: 'invalid mobile number' });
+    else {
+      t++;
+      this.setState({ mobileError: '' });
+    }
+    const { firstname, username, email, password, confirmPassword, mobileNumber } = this.state;
+    const newUser = {
       firstname: this.state.firstname,
       username: this.state.username,
       email: this.state.email,
@@ -42,87 +80,83 @@ class RegisterComponent extends Component {
       confirmPassword: this.state.confirmPassword,
       mobileNumber: this.state.mobileNumber
     }
-    register(user).then(res => {
-      if (firstname && username && email && password && confirmPassword && mobileNumber && password === confirmPassword) {
-        this.props.history.push('/login')
+    register(newUser).then(res => {
+      if (firstname && username && email && password && confirmPassword && mobileNumber) {
+         this.props.history.push('/login')
         console.log('matched')
       }
     })
+
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
 
-
   render() {
-    const { firstname, username, email, password, confirmPassword, mobileNumber, submitted } = this.state;
-   
     return (
       <div className="background" >
         <div className="container" id="register-form">
           <div className="row" >
             <div className="col-md-4 offset-md-4 reg-block">
               <h3>Register</h3>
-              <form className="form" onSubmit={this.handleSubmit} data-toggle="validator" role="form">
-                <div className={'form-group' + (submitted && !firstname ? ' has-error' : '')}>
+              <form className="form" onSubmit={this.handleSubmit} >
+
+                <div className={'form-group'}>
                   <label htmlFor="firstname">First Name</label>
-                  <input type="text" className="form-control" name="firstname" value={this.state.firstname}
+                  <input type="text" className="form-control" name="firstname"
                     onChange={this.handleChange} />
-                  {submitted && !firstname &&
-                    <div className="help-block">First Name is required</div>
-                  }
+                  <div className="help-block  text-danger">{this.state.fnameError}</div>
                 </div>
-                <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
+
+                <div className={'form-group'}>
                   <label htmlFor="username">Username</label>
-                  <input type="text" className="form-control" name="username" value={this.state.username}
+                  <input type="text" className="form-control" name="username"
                     onChange={this.handleChange} />
-                  {submitted && !username &&
-                    <div className="help-block">Username is required</div>
-                  }
+                  <div className="help-block text-danger">{this.state.userError}</div>
                 </div>
-                <div className={'form-group' + (submitted && !email  ? ' has-error' : '')}>
+
+                <div className={'form-group'}>
                   <label htmlFor="email">Email</label>
-                  <input type="email" className="form-control" name="email" value={this.state.email}  id="email"
+                  <input type="text" className="form-control" name="email" value={this.state.email}
                     onChange={this.handleChange} />
-                  {submitted && !email && 
-                    <div className="help-block">Email is required</div>
-                  }
+                  <div className="help-block text-danger">{this.state.emailError}</div>
                 </div>
-                <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+
+                <div className={'form-group'}>
                   <label htmlFor="password">Password</label>
                   <input type="password" className="form-control" name="password" value={this.state.password}
                     onChange={this.handleChange} />
-                  {submitted && !password &&
-                    <div className="help-block">Password is required</div>
-                  }
+                  <div className="help-block text-danger">{this.state.passwordError}</div>
                 </div>
-                <div className={'form-group' + (submitted && !confirmPassword ? ' has-error' : '')}>
+
+                <div className={'form-group'}>
                   <label htmlFor="confirmPassword">Confirm Password</label>
                   <input type="password" className="form-control" name="confirmPassword" value={this.state.confirmPassword}
                     onChange={this.handleChange} />
-                  {submitted && !confirmPassword &&
-                    <div className="help-block">confirmPassword is required</div>
-                  }
+                  <div className="help-block text-danger">{this.state.confirmError}</div>
                 </div>
-                <div className={'form-group' + (submitted && !mobileNumber ? ' has-error' : '')}>
-                  <label htmlFor="mobileNumber">Mobile Number</label>
+
+                <div className={'form-group'}>
+                  <label htmlFor="email">Mobile Number</label>
                   <input type="number" className="form-control" name="mobileNumber" value={this.state.mobileNumber}
                     onChange={this.handleChange} />
-                  {submitted && !mobileNumber &&
-                    <div className="help-block">mobile Number is required</div>
-                  }
+                  <div className="help-block text-danger">{this.state.mobileError}</div>
                 </div>
+
                 <div className={'form-group'}>
                   <button type="submit" className="btn btn-primary">Register</button>
                   <a href="./index" className="btn btn-link text-decoration-none">Cancel</a>
                 </div>
+
               </form>
             </div>
           </div>
         </div>
       </div>
-    );
+
+    )
   }
 }
-
-
 export default (RegisterComponent);
-
