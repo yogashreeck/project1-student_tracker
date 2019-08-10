@@ -10,3 +10,21 @@
 
     padding: 38px 50px 40px 50px;
 }
+.code{
+    width: 300px;
+    height: 300px;
+}
+.btn-pro{
+    border: 2px solid #fffefe;
+    width: 92px;
+    color: white;
+    background: black;
+}
+.box-course{
+    box-shadow: 1px 1px 8px;
+    margin: 25px !important;
+   
+}
+.btn-delete{
+    margin-left: 10px;
+}

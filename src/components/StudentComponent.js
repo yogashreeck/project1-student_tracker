@@ -127,7 +127,7 @@ class StudentComponent extends Component {
                 </div>
               </form>
             </div>
-            <div className="col-md-4 offset-md-1">
+            <div className="col-md-4 ">
               <RepoList repos={this.state.repos} />
             </div>
           </div>
@@ -152,6 +152,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
+        <h6>Search Registered Student's </h6>
       <form onSubmit={this.handleSubmit} className=" form ">
         <div class="input-group ">
           <input name="text" type="text" class="form-control"  

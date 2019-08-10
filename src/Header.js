@@ -43,7 +43,7 @@ class Header extends Component {
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
         id="ftco-navbar">
         <div class="container">
-          <a href="./index"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
+          <a href="/"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
             <img src={edutech} alt="eicon" className="iconlogo" />EduTech</h2></i></span></a>
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">

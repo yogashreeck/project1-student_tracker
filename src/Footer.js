@@ -12,7 +12,7 @@ class Footer extends Component {
           <div class="row">
             <div class="col-sm-3 col-md-3 col-xl-3">
               <h2>About</h2>
-              <p>Online education gives learning a new relevance to
+              <p>Education gives learning a new relevance to
                 contemporary society and professional and industry practice </p>
             </div>
 
@@ -29,11 +29,11 @@ class Footer extends Component {
 
             <div className="social_icon col-md-4 offset-md-1">
               <h4>Connect With Us</h4>
-              <SocialIcon url="https://twitter.com/" />
-              <SocialIcon url="https://www.facebook.com/" />
-              <SocialIcon url="https://www.whatsapp.com/" />
-              <SocialIcon url="https://www.email.com/" />
-              <SocialIcon url="http://linkedin.com/" />
+              <SocialIcon url="https://twitter.com/" className="foot-icon" />
+              <SocialIcon url="https://www.facebook.com/" className="foot-icon" />
+              <SocialIcon url="https://www.whatsapp.com/" className="foot-icon" />
+              <SocialIcon url="https://www.email.com/" className="foot-icon" />
+              <SocialIcon url="http://linkedin.com/" className="foot-icon" />
             </div>
           </div>
 
