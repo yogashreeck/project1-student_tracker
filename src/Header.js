@@ -10,7 +10,7 @@ class Header extends Component {
   logOut(e) {
     e.preventDefault();
     localStorage.removeItem('usertoken')
-    this.props.history.push('/');
+     window.location = '/';    
   }
   render() {
     const loginRegLink = (

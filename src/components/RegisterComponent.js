@@ -71,7 +71,6 @@ class RegisterComponent extends Component {
       t++;
       this.setState({ mobileError: '' });
     }
-    const { firstname, username, email, password, confirmPassword, mobileNumber } = this.state;
     const newUser = {
       firstname: this.state.firstname,
       username: this.state.username,
@@ -81,12 +80,8 @@ class RegisterComponent extends Component {
       mobileNumber: this.state.mobileNumber
     }
     register(newUser).then(res => {
-      if (firstname && username && email && password && confirmPassword && mobileNumber) {
          this.props.history.push('/login')
-        console.log('matched')
-      }
     })
-
   }
 
   handleChange(e) {

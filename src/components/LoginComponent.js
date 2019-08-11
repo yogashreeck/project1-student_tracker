@@ -22,7 +22,7 @@ class LoginComponent extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    let reg_pwd = /^[@#*&_%$!][A-Za-z0-9]{4}$/;
+    let reg_pwd = /^[@#*&_%$!][A-Za-z0-9]/;
     let reg_email = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
     let t = 0;
     if (!this.state.email) this.setState({ emailError: 'Email is required' });
@@ -45,8 +45,7 @@ class LoginComponent extends Component {
     login(user).then(res => {
       if (res) {
         window.location = '/student';    
-    }else{
-      console.log('login successful');
+        // this.props.history.push('/student')
     }
     })
   }

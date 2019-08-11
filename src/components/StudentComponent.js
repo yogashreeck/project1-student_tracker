@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { studentProfile } from './UserFunction';
 import RepoList from './ RepoList'
 
-
-
 class StudentComponent extends Component {
   constructor(props) {
     super(props);
@@ -133,10 +131,8 @@ class StudentComponent extends Component {
           </div>
         </div>
       </div>
-
     );
   }
-
 }
 
 class SearchBar extends React.Component {
