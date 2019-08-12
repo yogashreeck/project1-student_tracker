@@ -62,9 +62,9 @@ class StudentComponent extends Component {
       <div>
         <div className="conatiner">
           <div className="row">
-            <div className="col-md-3 offset-md-9">
+            <div className="col-md-3 offset-md-8">
             <form action="#" className=" form">
-              <div class="input-group ">
+              <div className="input-group ">
                 <SearchBar handleSubmit={this.handleSearch} />
               </div>
             </form>
@@ -125,7 +125,7 @@ class StudentComponent extends Component {
                 </div>
               </form>
             </div>
-            <div className="col-md-4 ">
+            <div className="col-md-4">
               <RepoList repos={this.state.repos} />
             </div>
           </div>

@@ -22,7 +22,7 @@ class LoginComponent extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    let reg_pwd = /^[@#*&_%$!][A-Za-z0-9]/;
+    let reg_pwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/;
     let reg_email = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
     let t = 0;
     if (!this.state.email) this.setState({ emailError: 'Email is required' });
@@ -33,7 +33,7 @@ class LoginComponent extends Component {
     }
 
     if (!this.state.password) this.setState({ passwordError: 'Password is required' });
-    else if (!reg_pwd.test(this.state.password)) this.setState({ passwordError: 'Password should standerd format' });
+    else if (!reg_pwd.test(this.state.password)) this.setState({ passwordError: 'Incorrect Password ' });
     else {
       t++;
       this.setState({ passwordError: '' });
@@ -43,9 +43,10 @@ class LoginComponent extends Component {
       password: this.state.password
     }
     login(user).then(res => {
-      if (res) {
-        window.location = '/student';    
-        // this.props.history.push('/student')
+      debugger
+      if (res && t>1) {
+        // window.location = '/student';    
+        this.props.history.push('/student')
     }
     })
   }

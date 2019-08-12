@@ -6,6 +6,7 @@ import course from './images/course.png';
 import register from './images/register.png';
 import login from './images/login.png';
 
+
 class Header extends Component {
   logOut(e) {
     e.preventDefault();
@@ -52,7 +53,7 @@ class Header extends Component {
               <li class="nav-item"><Link to="/course" class="nav-link">Courses
                  <img src={course} alt="sicon" className="icon" /></Link></li>
               <li class="nav-item"><a href="" onClick={this.logOut.bind(this)} class="nav-link">logOut
-               </a></li>
+             </a></li>
             </ul>
           </div>
         </div>

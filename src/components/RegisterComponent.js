@@ -28,9 +28,9 @@ class RegisterComponent extends Component {
     event.preventDefault();
 
     let reg_user = /^[A-Za-z]/;
-    let reg_pwd = /^[@#*&_%$!][A-Za-z0-9]{4}$/;
+    let reg_pwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/;
     let reg_email = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
-    let reg_mobile = /^[0-9]/;
+    let reg_mobile = /^[897][0-9]{9}/;
 
     let t = 0;
     if (!this.state.firstname) this.setState({ fnameError: 'Firstname is required' });
@@ -60,7 +60,7 @@ class RegisterComponent extends Component {
       this.setState({ passwordError: '' });
     }
     if (!this.state.confirmPassword) this.setState({ confirmError: 'ConfirmPassword is required' });
-    else if ((this.state.password) !== (!this.state.confirmPassword)) this.setState({ confirmError: 'Password not matched' });
+    else if (!reg_pwd.test(this.state.password)) this.setState({ confirmError: 'Password not matched' });
     else {
       t++;
       this.setState({ confirmError: '' });
@@ -79,9 +79,12 @@ class RegisterComponent extends Component {
       confirmPassword: this.state.confirmPassword,
       mobileNumber: this.state.mobileNumber
     }
-    register(newUser).then(res => {
-         this.props.history.push('/login')
-    })
+      register(newUser).then(res => {
+        console.log("hii")
+        if(t>5) {
+        this.props.history.push('/login')
+   }     
+    })     
   }
 
   handleChange(e) {
