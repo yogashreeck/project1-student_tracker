@@ -47,8 +47,11 @@ class Edit extends Component {
   componentDidMount() {
     console.log(this.props.match.params.id)
     debugger;
-    fetch('/users/edit/id'+this.props.match.params.id)
-      .then(res => {
+    // fetch('/users/edit/id'+this.props.match.params.id)
+    //   .then(res => res.json())
+    //   .then(data => {
+    axios.get('http://localhost:8000/users/edit/id'+this.props.match.params.id)
+        .then(res => {
             this.setState({ 
               studentname: res.data.studentname,
               course: res.data.course,
