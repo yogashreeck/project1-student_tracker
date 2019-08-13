@@ -82,6 +82,7 @@ class RegisterComponent extends Component {
       register(newUser).then(res => {
         console.log("hii")
         if(t>5) {
+        window.alert(`registered successfully`)
         this.props.history.push('/login')
    }     
     })     

@@ -32,7 +32,7 @@ class Edit extends Component {
       course: this.state.course,
       mobileNumber: this.state.mobileNumber
     }
-    axios.post('http://localhost:8000/users/studentProfile/update/:id'+this.props.match.params.id, profileuser)
+    axios.put('http://localhost:8000/users/studentProfile/update/:id'+this.props.match.params.id, profileuser)
     .then(res => console.log(res.data,"hi"));
     this.setState({
       studentname: '',
@@ -51,6 +51,7 @@ class Edit extends Component {
     //   .then(res => res.json())
     //   .then(data => {
     axios.get('http://localhost:8000/users/edit/id'+this.props.match.params.id)
+   
         .then(res => {
             this.setState({ 
               studentname: res.data.studentname,

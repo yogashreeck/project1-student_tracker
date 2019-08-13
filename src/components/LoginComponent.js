@@ -45,13 +45,12 @@ class LoginComponent extends Component {
     login(user).then(res => {
       debugger
       if (res && t>1) {
-        // window.location = '/student';    
+        // window.location = '/student'; 
+        window.alert(`login successfully`)   
         this.props.history.push('/student')
     }
     })
   }
-
-
 
   render() {
    
