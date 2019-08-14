@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { login } from './UserFunction'
+import { login } from './UserFunction';
 
 class LoginComponent extends Component {
   constructor() {
@@ -12,43 +12,35 @@ class LoginComponent extends Component {
      
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChnage = this.handleInputChnage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
-  handleChange(e) {
+  handleInputChnage(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
   handleSubmit(e) {
     e.preventDefault();
-    let reg_pwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/;
-    let reg_email = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
-    let t = 0;
-    if (!this.state.email) this.setState({ emailError: 'Email is required' });
-    else if (!reg_email.test(this.state.email)) this.setState({ emailError: 'Invalid Email' });
-    else {
-      t++;
-      this.setState({ emailError: '' });
-    }
-
-    if (!this.state.password) this.setState({ passwordError: 'Password is required' });
-    else if (!reg_pwd.test(this.state.password)) this.setState({ passwordError: 'Incorrect Password ' });
-    else {
-      t++;
-      this.setState({ passwordError: '' });
-    }
     const user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     }
+   
     login(user).then(res => {
-      debugger
-      if (res && t>1) {
+
+      if (res === "User does not exist") {
+        console.log(res);
         // window.location = '/student'; 
-        window.alert(`login successfully`)   
-        this.props.history.push('/student')
-    }
+        window.alert('invalid user does not exist')
+    
+      } else if (res === "incorrect password") {
+        window.alert('invalid password ')
+      }
+      else 
+        // window.alert('invalid user ') 
+        // this.props.history.push('/student')  
+       window.location = '/student'; 
     })
   }
 
@@ -63,14 +55,14 @@ class LoginComponent extends Component {
               <div className={'form-group' }>
                 <label htmlFor="email"><b>Email</b></label>
                 <input type="text" className="form-control" name="email" value={this.state.email}
-                    onChange={this.handleChange} />
+                    onChange={this.handleInputChnage} />
                   <div className="help-block text-danger" >{this.state.emailError}</div>
               </div>
 
               <div className={'form-group' }>
                 <label htmlFor="password"><b>Password</b></label>
                 <input type="password" className="form-control" name="password" value={this.state.password}
-                  onChange={this.handleChange} />
+                  onChange={this.handleInputChnage} />
                   <div className="help-block text-danger">{this.state.passwordError}</div>
               </div>
               <div className="form-group">

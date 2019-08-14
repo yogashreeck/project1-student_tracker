@@ -19,7 +19,7 @@ class Header extends Component {
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
           id="ftco-navbar">
           <div class="container">
-            <a href="/"><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
+            <a href=""><span class="navbar-brand"><i class="left-bar"></i><i class="right-bar"><h2>
               <img src={edutech} alt="eicon" className="iconlogo" />EduTech</h2></i></span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="oi oi-menu"></span> Menu

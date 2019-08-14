@@ -80,7 +80,6 @@ class RegisterComponent extends Component {
       mobileNumber: this.state.mobileNumber
     }
       register(newUser).then(res => {
-        console.log("hii")
         if(t>5) {
         window.alert(`registered successfully`)
         this.props.history.push('/login')
