@@ -11,7 +11,7 @@ class Header extends Component {
   logOut(e) {
     e.preventDefault();
     localStorage.removeItem('usertoken')
-     window.location = '/';    
+    window.location = '/';
   }
   render() {
     const loginRegLink = (
@@ -63,7 +63,7 @@ class Header extends Component {
     return (
       <div>
 
-        {localStorage.getItem('usertoken')? logoutLink : loginRegLink}
+        {localStorage.getItem('usertoken') ? logoutLink : loginRegLink}
 
       </div>
     )

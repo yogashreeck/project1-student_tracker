@@ -5,8 +5,8 @@ import './App.css';
 class Footer extends Component {
   render() {
     return (
-     
-        <div id="foot-page">
+
+      <div id="foot-page">
         <footer className="site-footer">
 
           <div class="row">
@@ -24,7 +24,6 @@ class Footer extends Component {
                 </div>
               </div>
             </form>
-
 
 
             <div className="social_icon col-md-4 offset-md-1">
@@ -51,8 +50,8 @@ class Footer extends Component {
             </div>
           </div>
         </footer>
-        </div>
-     
+      </div>
+
     );
   }
 }

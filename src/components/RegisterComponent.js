@@ -79,12 +79,12 @@ class RegisterComponent extends Component {
       confirmPassword: this.state.confirmPassword,
       mobileNumber: this.state.mobileNumber
     }
-      register(newUser).then(res => {
-        if(t>5) {
+    register(newUser).then(res => {
+      if (t > 5) {
         window.alert(`registered successfully`)
         this.props.history.push('/login')
-   }     
-    })     
+      }
+    })
   }
 
   handleChange(e) {
@@ -145,7 +145,7 @@ class RegisterComponent extends Component {
 
                 <div className={'form-group'}>
                   <button type="submit" className="btn btn-primary">Register</button>
-                  <a href="./index" className="btn btn-link text-decoration-none">Cancel</a>
+                  <a href="./" className="btn btn-link text-decoration-none">Cancel</a>
                 </div>
 
               </form>

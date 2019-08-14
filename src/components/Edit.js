@@ -32,14 +32,14 @@ class Edit extends Component {
       course: this.state.course,
       mobileNumber: this.state.mobileNumber
     }
-    axios.put('http://localhost:8000/users/studentProfile/update/'+this.props.match.params.id, profileuser)
-    .then(res => console.log(res.data,"hi"));
+    axios.put('http://localhost:8000/users/studentProfile/update/' + this.props.match.params.id, profileuser)
+      .then(res => console.log(res.data, "hi"));
     this.setState({
       studentname: '',
       address: '',
-      email:'',
-      course:'',
-      mobileNumber:''
+      email: '',
+      course: '',
+      mobileNumber: ''
     })
     this.props.history.push('/student');
   }
@@ -47,47 +47,47 @@ class Edit extends Component {
   componentDidMount() {
     console.log(this.props.match.params.id)
     debugger;
-    axios.get('http://localhost:8000/users/edit/'+this.props.match.params.id)
-   
-        .then(res => {
-            this.setState({ 
-              studentname: res.data.studentname,
-              course: res.data.course,
-              address: res.data.address,
-              email: res.data.email,
-              mobileNumber: res.data.mobileNumber,
-              });
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-    }
+    axios.get('http://localhost:8000/users/edit/' + this.props.match.params.id)
 
-onChangeStudentName(e) {
+      .then(res => {
+        this.setState({
+          studentname: res.data.studentname,
+          course: res.data.course,
+          address: res.data.address,
+          email: res.data.email,
+          mobileNumber: res.data.mobileNumber,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
+
+  onChangeStudentName(e) {
     this.setState({
       studentname: e.target.value
     });
-}
-onChangeCourse(e) {
+  }
+  onChangeCourse(e) {
     this.setState({
       course: e.target.value
     });
-}
-onChangeAddress(e) {
-  this.setState({
-    address: e.target.value
-  });
-}
-onChangeEmail(e) {
-  this.setState({
-    email: e.target.value
-  });
-}
-onChangeMobile(e) {
-  this.setState({
-    mobileNumber: e.target.value
-  });
-}
+  }
+  onChangeAddress(e) {
+    this.setState({
+      address: e.target.value
+    });
+  }
+  onChangeEmail(e) {
+    this.setState({
+      email: e.target.value
+    });
+  }
+  onChangeMobile(e) {
+    this.setState({
+      mobileNumber: e.target.value
+    });
+  }
 
   render() {
     return (
@@ -102,12 +102,12 @@ onChangeMobile(e) {
               <h3> Edit Student Details</h3>
               <form className="form" onSubmit={this.handleSubmit}>
 
-                <div className={'form-group' }>
+                <div className={'form-group'}>
                   <label For="studentName">Student Name</label>
-                  <input type="text" className="form-control"  value={this.state.studentname}
+                  <input type="text" className="form-control" value={this.state.studentname}
                     onChange={this.onChangeStudentName} />
                 </div>
-                <div className={'form-group' }>
+                <div className={'form-group'}>
                   <label For="course">Course</label>
                   <select id="myList" className="form-control"
                     onChange={this.onChangeCourse} >
@@ -126,19 +126,19 @@ onChangeMobile(e) {
                   <input type="text" className="form-control" value={this.state.address}
                     onChange={this.onChangeAddress} />
                 </div>
-                <div className={'form-group' }>
+                <div className={'form-group'}>
                   <label For="email">Email</label>
-                  <input type="email" className="form-control"  value={this.state.email}
+                  <input type="email" className="form-control" value={this.state.email}
                     onChange={this.onChangeEmail} />
                 </div>
-                <div className={'form-group' }>
+                <div className={'form-group'}>
                   <label For="mobileNumber">Mobile Number</label>
-                  <input type="number" className="form-control" 
+                  <input type="number" className="form-control"
                     value={this.state.mobileNumber}
                     onChange={this.onChangeMobile} />
                 </div>
                 <div className={'form-group'}>
-                  <input type="submit" className="btn btn-primary" value="Update"/>
+                  <input type="submit" className="btn btn-primary" value="Update" />
                   <button type="submit" className="btn btn-danger text-center">Cancel</button>
                 </div>
               </form>

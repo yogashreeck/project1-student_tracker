@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <Router>
-      <Header />
+        <Header />
         <switch>
           <Route exact path='/' component={IndexComponent}></Route>
           <Route exact path='/register' component={RegisterComponent}></Route>
